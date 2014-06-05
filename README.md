@@ -4,6 +4,9 @@ A social networking app created with Laravel. Its purpose is to enable us to lea
 
 The team will be adding in some useful links that they used to become familiar with Laravel and GIT.
 
+## IMPORTANT ##
+https://github.com/laravel/laravel/blob/master/.gitignore for the main gitignore file
+
 # 1. Getting GIT to ignore specific files:
     http://git-scm.com/docs/gitignore
 
@@ -25,3 +28,5 @@ The team will be adding in some useful links that they used to become familiar w
 # 4. Time to seed the newly added table with some data:
     php artisan db:seed after creating a new seed within database/seeds
     called UserTableSeeder.php
+
+# 5. Downloaded Twitter Bootstrap using composer update command after updating composer.json
