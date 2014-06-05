@@ -29,4 +29,12 @@ https://github.com/laravel/laravel/blob/master/.gitignore for the main gitignore
     php artisan db:seed after creating a new seed within database/seeds
     called UserTableSeeder.php
 
-# 5. Downloaded Twitter Bootstrap using composer update command after updating composer.json
+# 5. Downloaded Twitter Bootstrap using composer update command after updating composer.json.
+    I have added the dependancy to composer.json which is added to the repo.
+    Open the README for bootstrap and follow the instructions to install npm and compile the less files.
+
+    I ran into the following issue when installing npm: The package grunt does not satisfy its siblings' peerDependencies requirements!
+    This solved it:
+        http://stackoverflow.com/questions/22269101/grunt-dependencies-conflicts-in-bootstrap
+
+    Then it is time to compile using grunt
