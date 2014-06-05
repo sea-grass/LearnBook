@@ -11,7 +11,15 @@
 |
 */
 
-Route::get('/', function()
+/*Route::get('/', function()
 {
 	return View::make('hello');
-});
+});*/
+
+Route::any('/','UsersController@dashboard');
+Route::any('/user','UsersController@dashboard');
+
+Route::any('/user/register','UsersController@register');
+Route::any('/user/signout','UsersController@signout');
+Route::any('/user/signup','UsersController@signup');
+Route::any('/user/signin','UsersController@signin');

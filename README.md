@@ -38,3 +38,11 @@ https://github.com/laravel/laravel/blob/master/.gitignore for the main gitignore
         http://stackoverflow.com/questions/22269101/grunt-dependencies-conflicts-in-bootstrap
 
     Then it is time to compile using grunt
+
+# 6. Publish the newly created Bootstrap files with the following commands:
+    php artisan asset:publish --path="vendor/twitter/bootstrap/dist/css" bootstrap/css
+    php artisan asset:publish --path="vendor/twitter/bootstrap/dist/js" bootstrap/js
+    php artisan asset:publish --path="vendor/twitter/bootstrap/dist/fonts" bootstrap/fonts
+
+# 7. Create Controllers like this:
+    php artisan controller:make UsersController

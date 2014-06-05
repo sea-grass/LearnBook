@@ -33,9 +33,14 @@ App::after(function($request, $response)
 |
 */
 
+
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('login');
+    //Our Auth Filter checks if the user is a guest,
+    //if they are, redirect them to the signin.
+	if (Auth::guest()){
+        return Redirect::guest('users/signin');
+    }
 });
 
 
