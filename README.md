@@ -19,4 +19,8 @@ The team will be adding in some useful links that they used to become familiar w
     The command to create a basic users table is:
         php artisan migrate:make create_users_table --table users --create
 
+    Once the migration is created (see the one for creating users), enter:
+        php artisan migrate to migrate the new table into the DB
 
+# 4. Time to seed the newly added table with some data:
+    php artisan db:seed after creating a new 
