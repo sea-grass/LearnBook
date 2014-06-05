@@ -16,7 +16,9 @@
 	return View::make('hello');
 });*/
 
-Route::any('/','UsersController@dashboard');
+Route::get('/', 'HomeController@showWelcome');
+
+//Route::any('/','UsersController@dashboard');
 Route::any('/user','UsersController@dashboard');
 
 Route::any('/user/register','UsersController@register');
