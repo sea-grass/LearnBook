@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration {
 	{
         //Note that the users table is defined as the authentication
         //table set in auth.php. The users table maps to User in the model
-		Schema::table('users', function(Blueprint $table)
+		Schema::create('users', function(Blueprint $table)
 		{
 			//Create a Primary Indexed Key:
             $table->increments('id');
