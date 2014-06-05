@@ -23,4 +23,5 @@ The team will be adding in some useful links that they used to become familiar w
         php artisan migrate to migrate the new table into the DB
 
 # 4. Time to seed the newly added table with some data:
-    php artisan db:seed after creating a new 
+    php artisan db:seed after creating a new seed within database/seeds
+    called UserTableSeeder.php

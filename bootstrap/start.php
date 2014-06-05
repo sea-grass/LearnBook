@@ -26,7 +26,10 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('your-machine-name'),
+    //This is where we can specify what environment folder
+    //that can be used by each of our laravel installs.
+	'local' => array('your-machine'),
+    'local_michael' => array('homestead'),
 
 ));
 
