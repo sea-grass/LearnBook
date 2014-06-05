@@ -41,7 +41,7 @@ class CreateUsersTable extends Migration {
             //We want to track the created_at and updated_at
             //this is done with one method call. Remember,
             //this timestamp not equivalent to a MYSQL timestamp
-            $table->timestamp();
+            $table->timestamps();
 		});
 	}
 
