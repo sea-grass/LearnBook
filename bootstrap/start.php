@@ -29,8 +29,9 @@ $env = $app->detectEnvironment(array(
     //This is where we can specify what environment folder
     //that can be used by each of our laravel installs.
 	//'local' => array('your-machine'),
-    //'local_michael' => array('homestead'),
+    'local_michael' => array('homestead'),
     'local_kris' => array('homestead'),
+    'local_chris' => array('ceagrass')
 
 ));
 
