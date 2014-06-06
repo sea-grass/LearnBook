@@ -15,7 +15,7 @@ class LinkUsersToProfile extends Migration {
         Schema::table('users', function(Blueprint $table)
         {
             $table->integer('profile_id')->unsigned();
-            $table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('profile_id')->references('id')->on('profiles');
         });
 	}
 
@@ -29,6 +29,7 @@ class LinkUsersToProfile extends Migration {
 		Schema::table('users', function(Blueprint $table)
         {
             $table->dropForeign('users_profile_id_foreign');
+            //$table->dropColumn('profile_id');
         });
 	}
 

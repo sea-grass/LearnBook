@@ -60,13 +60,35 @@ class UsersController extends \BaseController {
     {
         $validator = Validator::make(Input::all(), User::$rules);
         if ($validator->passes()) {
+
+            //First Create a new Profile in the system
+            //and save it
+            //This is without foreign keys
+            /*$profile = new Profile;
+            $profile->save();
+
+            //Create new User and use the profile ID from
+            //above to create the relationship
             $user = new User;
             $user->firstname = Input::get('firstname');
             $user->lastname = Input::get('lastname');
             $user->email = Input::get('email');
             $user->password = Hash::make(Input::get('password'));
-            $user->save();
-         
+            $user->profile_id = $profile->id;
+            $user->save();*/
+
+            //Works with hasOne only
+            /*$profile = new Profile;
+            $profile->save();
+
+            $user = new User;
+            $user->firstname = Input::get('firstname');
+            $user->lastname = Input::get('lastname');
+            $user->email = Input::get('email');
+            $user->password = Hash::make(Input::get('password'));
+            $user->profile_id = $profile->id;
+            $user->save();*/
+
             return Redirect::to('user/login')->with('message', 'Thanks for registering!');
         } else {
             return Redirect::to('user/register')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
