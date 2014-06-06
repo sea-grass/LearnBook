@@ -78,7 +78,7 @@ class UsersController extends \BaseController {
             $user->save();*/
 
             //Works with hasOne only
-            /*$profile = new Profile;
+            $profile = new Profile;
             $profile->save();
 
             $user = new User;
@@ -87,7 +87,7 @@ class UsersController extends \BaseController {
             $user->email = Input::get('email');
             $user->password = Hash::make(Input::get('password'));
             $user->profile_id = $profile->id;
-            $user->save();*/
+            $user->save();
 
             return Redirect::to('user/login')->with('message', 'Thanks for registering!');
         } else {

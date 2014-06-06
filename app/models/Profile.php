@@ -10,9 +10,9 @@ class Profile extends Eloquent {
      *
      * @return mixed
      */
-    public function profile()
+    /*public function profile()
     {
         return $this->belongsTo('User');
-    }
+    }*/
 }
 ?>
