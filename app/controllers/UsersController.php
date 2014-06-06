@@ -2,101 +2,74 @@
 
 class UsersController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    //Specifies the general layout file that should be used
+    protected $layout = "layouts.main";
 
-    public function dashboard(){
-
+    public function __construct() {
     }
 
-    public function signin(){
-
+    /**
+     * 
+     */
+    public function register() {
+        //users.register tells laravel to go to users/register
+        $this->layout->content = View::make('users.register');
     }
 
-    public function signout(){
-
+    /**
+     * 
+     */
+    public function login() {
+        //Looks under views/users/ for login.blade.php
+        $this->layout->content = View::make('users.login');
     }
 
-    public function signup(){
-        
+    /**
+     * 
+     */
+    public function logout() {
+        Auth::logout();
+        return Redirect::to('users/login')->with("message","You are logged out");
     }
 
+    /**
+     * This method will check if the user has logged in
+     * correctly. If they have not, then they will be redirected
+     * to the register page
+     */
+    public function signin() {
+        if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
+            return Redirect::to('users/dashboard')->with('message', 'You are now logged in!');
+        } else {
+            return Redirect::to('users/login')
+            ->with('message', 'Your username/password combination was incorrect')
+            ->withInput();
+        } 
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    public function dashboard() {
+        $this->layout->content = View::make('users.dashboard');
+    }
 
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function createUser()
+    {
+        $validator = Validator::make(Input::all(), User::$rules);
+        if ($validator->passes()) {
+            $user = new User;
+            $user->firstname = Input::get('firstname');
+            $user->lastname = Input::get('lastname');
+            $user->email = Input::get('email');
+            $user->password = Hash::make(Input::get('password'));
+            $user->save();
+         
+            return Redirect::to('users/login')->with('message', 'Thanks for registering!');
+        } else {
+            return Redirect::to('users/register')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+    }
 }
