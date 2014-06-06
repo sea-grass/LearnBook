@@ -67,9 +67,9 @@ class UsersController extends \BaseController {
             $user->password = Hash::make(Input::get('password'));
             $user->save();
          
-            return Redirect::to('users/login')->with('message', 'Thanks for registering!');
+            return Redirect::to('user/login')->with('message', 'Thanks for registering!');
         } else {
-            return Redirect::to('users/register')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::to('user/register')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
 }

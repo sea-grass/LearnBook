@@ -30,6 +30,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password');
 
+
+    /**
+     * Returns this user's profile. Read this:
+     * http://laravel.com/docs/eloquent#one-to-one
+     * http://laravel.com/docs/eloquent#inserting-related-models
+     *
+     * @return mixed
+     */
+    public function profile()
+    {
+        return $this->hasOne('Profile');
+    }
+
 	/**
 	 * Get the unique identifier for the user.
 	 *
