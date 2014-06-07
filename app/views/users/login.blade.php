@@ -1,4 +1,4 @@
-{{ Form::open(array('url'=>'users/signin', 'class'=>'form-horizontal')) }}
+{{ Form::open(array('url'=>'user/signin', 'class'=>'form-horizontal')) }}
 
     <div class="form-group">
         {{ Form::label('email', 'E-Mail Address', array('class' => 'col-sm-2 control-label')) }}

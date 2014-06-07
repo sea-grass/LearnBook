@@ -43,6 +43,12 @@ Route::filter('auth', function()
     }
 });
 
+Route::filter('forwardLoggedIn', function(){
+    if (!Auth::guest()){
+        return Redirect::guest('user/dashboard');
+    }
+});
+
 
 Route::filter('auth.basic', function()
 {

@@ -16,17 +16,33 @@
  | dashboard. The plan is to use Laravel's session helper to
  | retrieve the correct user profile.
  */
-Route::get('/', array('before' => 'auth', 'uses' => 'UsersController@dashboard'));
-Route::get('/user',array('before' => 'auth','UsersController@dashboard'));
-Route::get('/user/dashboard',array('before' => 'auth','UsersController@dashboard'));
+Route::get('/', array(
+    'before' => 'auth',
+    'uses' => 'UsersController@dashboard'));
+
+Route::get('/user',array(
+    'before' => 'auth',
+    'uses' => 'UsersController@dashboard'));
+
+Route::get('/user/dashboard',array(
+    'before' => 'auth',
+    'uses' => 'UsersController@dashboard'));
 
 //The register route is used to display the register form.
 //The register form POSTs to the createUser route.
 //The login route is used to display the login form.
 //The login form POSTs to the signin route.
-Route::get('/user/register','UsersController@register');
-Route::get('/user/login','UsersController@login');
-Route::get('/user/logout','UsersController@logout');
+Route::get('/user/register',array(
+    'before'=>'forwardLoggedIn',
+    'UsersController@register'));
+
+Route::get('/user/login',array(
+    'before' => 'forwardLoggedIn',
+    'uses'=>'UsersController@login'));
+
+Route::get('/user/logout',array(
+    'before'=>'auth',
+    'uses'=>'UsersController@logout'));
 
 
 /*

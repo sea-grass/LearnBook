@@ -29,7 +29,7 @@ class UsersController extends \BaseController {
      */
     public function logout() {
         Auth::logout();
-        return Redirect::to('users/login')->with("message","You are logged out");
+        return Redirect::to('user/login')->with("message","You are logged out");
     }
 
     /**
@@ -39,15 +39,16 @@ class UsersController extends \BaseController {
      */
     public function signin() {
         if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
-            return Redirect::to('users/dashboard')->with('message', 'You are now logged in!');
+            return Redirect::to('user/dashboard')->with('message', 'You are now logged in!');
         } else {
-            return Redirect::to('users/login')
+            return Redirect::to('user/login')
             ->with('message', 'Your username/password combination was incorrect')
             ->withInput();
         } 
     }
 
     public function dashboard() {
+
         $this->layout->content = View::make('users.dashboard');
     }
 
@@ -61,33 +62,25 @@ class UsersController extends \BaseController {
         $validator = Validator::make(Input::all(), User::$rules);
         if ($validator->passes()) {
 
-            //First Create a new Profile in the system
-            //and save it
-            //This is without foreign keys
-            /*$profile = new Profile;
-            $profile->save();
+            //A user should be created with their profile,
+            //otherwise there is an issue, use a transaction
+            DB::transaction(function() {
+                //First create a new user and save this user
+                //to the database table.
+                $user = new User;
+                $user->firstname = Input::get('firstname');
+                $user->lastname = Input::get('lastname');
+                $user->email = Input::get('email');
+                $user->password = Hash::make(Input::get('password'));
+                $user->save();
 
-            //Create new User and use the profile ID from
-            //above to create the relationship
-            $user = new User;
-            $user->firstname = Input::get('firstname');
-            $user->lastname = Input::get('lastname');
-            $user->email = Input::get('email');
-            $user->password = Hash::make(Input::get('password'));
-            $user->profile_id = $profile->id;
-            $user->save();*/
-
-            //Works with hasOne only
-            $profile = new Profile;
-            $profile->save();
-
-            $user = new User;
-            $user->firstname = Input::get('firstname');
-            $user->lastname = Input::get('lastname');
-            $user->email = Input::get('email');
-            $user->password = Hash::make(Input::get('password'));
-            $user->profile_id = $profile->id;
-            $user->save();
+                //Next ceate a new profile for the user,
+                //associate the profile's user with the user
+                //created above.
+                $profile = new Profile;
+                $profile->user()->associate($user);
+                $profile->save();
+            });
 
             return Redirect::to('user/login')->with('message', 'Thanks for registering!');
         } else {
