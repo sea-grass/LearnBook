@@ -8,3 +8,4 @@ composer.lock
 .DS_Store
 Thumbs.db
 /app/config/local_kris/*.php
+/app/config/local_michael/*.php
