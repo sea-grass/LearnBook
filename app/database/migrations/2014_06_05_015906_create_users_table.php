@@ -30,6 +30,8 @@ class CreateUsersTable extends Migration {
             $table->string('email')->unique();
             $table->string('password');
 
+            $table->boolean('isAdmin')->default(false);
+
             //Need this to have remembering logged in user
             $table->string('remember_token',100)->nullable();
 
