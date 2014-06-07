@@ -34,7 +34,7 @@ Route::get('/user/dashboard',array(
 //The login form POSTs to the signin route.
 Route::get('/user/register',array(
     'before'=>'forwardLoggedIn',
-    'UsersController@register'));
+    'uses'=>'UsersController@register'));
 
 Route::get('/user/login',array(
     'before' => 'forwardLoggedIn',
